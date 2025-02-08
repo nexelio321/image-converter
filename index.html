@@ -5,56 +5,128 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Image Converter</title>
   <style>
+    /* Gradient Background */
     body {
       font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    /* Container for the App */
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(10px);
       text-align: center;
-      margin: 50px;
+      max-width: 400px;
+      width: 100%;
     }
+
     h1 {
-      color: #333;
+      font-size: 2rem;
+      margin-bottom: 20px;
     }
-    input[type="file"] {
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    /* File Input Styling */
+    .file-input {
       margin: 20px 0;
     }
-    select {
-      padding: 5px;
-      font-size: 16px;
+
+    .file-input input[type="file"] {
+      display: none;
     }
+
+    .file-input label {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #2575fc;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .file-input label:hover {
+      background: #1b5bbf;
+    }
+
+    /* Format Selection Styling */
+    select {
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+      margin: 10px 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Convert Button Styling */
     button {
       padding: 10px 20px;
-      font-size: 16px;
-      background-color: #007BFF;
+      font-size: 1rem;
+      background: #6a11cb;
       color: white;
       border: none;
+      border-radius: 5px;
       cursor: pointer;
+      transition: background 0.3s ease;
+      width: 100%;
     }
+
     button:hover {
-      background-color: #0056b3;
+      background: #4d0a9e;
     }
+
+    /* Output Image Styling */
     #output {
       margin-top: 20px;
+    }
+
+    #output img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>Image Converter</h1>
-  <p>Upload an image and convert it to your desired format.</p>
+  <div class="container">
+    <h1>Image Converter</h1>
+    <p>Upload an image and convert it to your desired format.</p>
 
-  <!-- File Input -->
-  <input type="file" id="imageInput" accept="image/*" />
+    <!-- File Input -->
+    <div class="file-input">
+      <input type="file" id="imageInput" accept="image/*" />
+      <label for="imageInput">Choose Image</label>
+    </div>
 
-  <!-- Format Selection -->
-  <select id="formatSelect">
-    <option value="png">PNG</option>
-    <option value="jpeg">JPEG</option>
-    <option value="webp">WEBP</option>
-  </select>
+    <!-- Format Selection -->
+    <select id="formatSelect">
+      <option value="png">PNG</option>
+      <option value="jpeg">JPEG</option>
+      <option value="webp">WEBP</option>
+    </select>
 
-  <!-- Convert Button -->
-  <button onclick="convertImage()">Convert</button>
+    <!-- Convert Button -->
+    <button onclick="convertImage()">Convert Image</button>
 
-  <!-- Output Image -->
-  <div id="output"></div>
+    <!-- Output Image -->
+    <div id="output"></div>
+  </div>
 
   <script>
     function convertImage() {
@@ -88,7 +160,7 @@
 
           // Display the converted image
           outputDiv.innerHTML = `<h2>Converted Image (${format.toUpperCase()})</h2>
-                                 <img src="${dataURL}" alt="Converted Image" style="max-width: 100%;"/>`;
+                                 <img src="${dataURL}" alt="Converted Image" />`;
         };
       };
 
